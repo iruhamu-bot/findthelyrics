@@ -55,7 +55,7 @@ exports.find = (artist, title, cb) => {
             }).catch(function(e) {
                 cb(e, null)
             })
-        }, 500);
+        }, 1500);
     }).catch(function(e) {
         cb(e, null)
     })

@@ -15,4 +15,5 @@ ftl.find(artist, title, function(err, resp) {
     // 'Cause today’s gonna be my day
     // I just wanna climb to the top of a mountain
     // Standing tall when I'm howlin'
+    // ...
 })
