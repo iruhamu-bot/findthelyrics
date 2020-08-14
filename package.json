@@ -1,6 +1,6 @@
 {
   "name": "findthelyrics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Find the lyrics of any given song using the power of scraping!",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "audio"
   ],
   "author": "n0rmancodes",
-  "license": "The Unlicense",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/n0rmancodes/findthelyrics/issues"
   },

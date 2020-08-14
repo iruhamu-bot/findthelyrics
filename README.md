@@ -3,9 +3,17 @@ NPM package to find lyrics to any given song.
 
 [NPMJS](https://www.npmjs.com/package/findthelyrics) Package | [Github](https://github.com/n0rmancodes/findthelyrics) Repo
 
-## How is it done?
+# Disclaimer 
+Although the code is not licensed, the lyrics are highly likely to be licensed by the respective record label.
 
+To programically check the record label of the song, use [Discogs API](https://www.discogs.com/developers/).
+
+I take no responsibility for the actions used with the code.
+
+## How is it done?
 It scrapes Genius to find the lyrics.
+
+If the scraper fails on Genius, it falls back to MusixMatch.
 
 ## Sample Code
 
@@ -18,7 +26,11 @@ var artist = "Fitz and The Tantrums";
 var title = "I Just Wanna Shine";
 
 ftl.find(artist, title, function(err, resp) {
-    console.log(resp)
+    if (!err) {
+        console.log(resp)
+    } else {
+        console.log(err)
+    }
     // [Chorus]
     // I just wanna shine like the sun when it comes up
     // Run the city from the rooftops

@@ -24,7 +24,7 @@ exports.find = (artist, title, cb) => {
         if (JSON.parse(response.body).response.sections[0].hits[0]) {
             var data_url = "https://genius.com" + JSON.parse(response.body).response.sections[0].hits[0].result.path;
         } else {
-            cb({code:"noResults",message:"There was no results for your query."}, null);
+            cb({code:"noResults",message:"There was no results for your query.", suggestion: "Make sure you spelled the query correctly."}, null);
             return false;
         }
         // timeout is to prevent rate limiting
@@ -45,12 +45,50 @@ exports.find = (artist, title, cb) => {
                 var $ = cheerio.load(response.body);
                 if ($(".song_body-lyrics p").text()) {
                     cb(null, $(".song_body-lyrics p").text());
-                } else if ($(".song_body-lyrics").text()) {
-                    cb(null, $(".song_body-lyrics").text());
                 } else {
-                    var errObj = {code:"scrapingFailed",message:"The song could not be scraped."}
-                    cb(errObj, null);
-                    return;
+                    var mm = "https://www.musixmatch.com/search/" + q;
+                    got(mm, {
+                        headers: {
+                            "Host": "www.musixmatch.com",
+                            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+                            "Accept-Language": "en-US,en;q=0.5",
+                            "Accept-Encoding": "gzip, deflate, br",
+                            "Referer": "https://www.musixmatch.com/",
+                            "Connection": "keep-alive",
+                            "Upgrade-Insecure-Requests": "1",
+                            "DNT": "1",
+                            "Cache-Control": "max-age=0"
+                        }
+                    }).then(function(response) {
+                        var $ = cheerio.load(response.body);
+                        var mm2 = "https://www.musixmatch.com" + $(".media-card-title a")[0].attribs.href;
+                        got(mm2,  {
+                            headers: {
+                                "Host": "www.musixmatch.com",
+                                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+                                "Accept-Language": "en-US,en;q=0.5",
+                                "Accept-Encoding": "gzip, deflate, br",
+                                "Referer": mm,
+                                "Connection": "keep-alive",
+                                "Upgrade-Insecure-Requests": "1",
+                                "DNT": "1",
+                                "Cache-Control": "max-age=0",
+                                "TE": "Trailers"
+                            }
+                        }).then(function(response) {
+                            var $ = cheerio.load(response.body);
+                            if ($(".mxm-lyrics .lyrics__content__ok")) {
+                                var lyrics = $(".mxm-lyrics .lyrics__content__ok").text();
+                                cb(null, lyrics)
+                            } else {
+                                cb({code:"noData",message:"There was no data available for your query.", suggestion: "Make sure you spelled the query correctly."}, null);
+                            }
+                        })
+                    }).catch(function(e) {
+                        cb(e, null)
+                    })
                 }
             }).catch(function(e) {
                 cb(e, null)
