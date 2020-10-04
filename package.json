@@ -1,6 +1,6 @@
 {
   "name": "findthelyrics",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Find the lyrics of any given song using the power of scraping!",
   "main": "index.js",
   "scripts": {
