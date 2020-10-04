@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 exports.find = (artist, title, cb) => {
     if (!artist | !title | !cb) {
-        console.log("callbacks and variables are required");
+        cb({"message": "Callbacks and variables are required.", "code": "notAllVars"});
         return;
     }
     var q = encodeURI(artist).replace(" ", "+") + "+" + encodeURI(title).replace(" ", "+");
@@ -106,7 +106,10 @@ exports.find = (artist, title, cb) => {
                 }  
             }).then(function(response) {
                 var $ = cheerio.load(response.body);
-                if ($(".media-card-title a")[0].attribs.href) {cb({code:"noResults",message:"There was no results for your query.", suggestion: "Make sure you spelled the query correctly."}, null);}
+                if (!$(".media-card-title a")[0].attribs.href) {
+                    cb({code:"noResults",message:"There was no results for your query.", suggestion: "Make sure you spelled the query correctly."}, null);
+                    return;
+                }
                 var mm2 = "https://www.musixmatch.com" + $(".media-card-title a")[0].attribs.href;
                 got(mm2,  {
                     headers: {
