@@ -11,7 +11,7 @@ exports.find = (artist, title, cb) => {
     got(url,{
         headers: {
             "Host": "genius.com",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0",
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-US,en;q=0.5",
             "X-Requested-With": "XMLHttpRequest",
@@ -27,7 +27,7 @@ exports.find = (artist, title, cb) => {
                 got(data_url, {
                     headers: {
                         "Host": "genius.com",
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0",
                         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
                         "Accept-Language": "en-US,en;q=0.5",
                         "Accept-Encoding": "gzip, deflate, br",
@@ -45,7 +45,7 @@ exports.find = (artist, title, cb) => {
                         got(mm, {
                             headers: {
                                 "Host": "www.musixmatch.com",
-                                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0",
                                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
                                 "Accept-Language": "en-US,en;q=0.5",
                                 "Accept-Encoding": "gzip, deflate, br",
@@ -61,7 +61,7 @@ exports.find = (artist, title, cb) => {
                             got(mm2,  {
                                 headers: {
                                     "Host": "www.musixmatch.com",
-                                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0",
                                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
                                     "Accept-Language": "en-US,en;q=0.5",
                                     "Accept-Encoding": "gzip, deflate, br",
@@ -94,7 +94,7 @@ exports.find = (artist, title, cb) => {
             got(d, { 
                 headers: {
                     "Host": "www.musixmatch.com",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0",
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
                     "Accept-Language": "en-US,en;q=0.5",
                     "Accept-Encoding": "gzip, deflate, br",
@@ -114,7 +114,7 @@ exports.find = (artist, title, cb) => {
                 got(mm2,  {
                     headers: {
                         "Host": "www.musixmatch.com",
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0",
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0",
                         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
                         "Accept-Language": "en-US,en;q=0.5",
                         "Accept-Encoding": "gzip, deflate, br",
