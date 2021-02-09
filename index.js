@@ -57,6 +57,10 @@ exports.find = (artist, title, cb) => {
                             }
                         }).then(function(response) {
                             var $ = cheerio.load(response.body);
+                            if (!$(".media-card-title a")[0]) {
+                                cb({code:"noData",message:"There was no data available for your query.", suggestion: "Make sure you spelled the query correctly."}, null);
+                                return;
+                            }
                             var mm2 = "https://www.musixmatch.com" + $(".media-card-title a")[0].attribs.href;
                             got(mm2,  {
                                 headers: {
