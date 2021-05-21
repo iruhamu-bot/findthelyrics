@@ -22,10 +22,9 @@ This code gets the lyrics of ``I Just Wanna Shine`` by ``Fitz and The Tantrums``
 ```js
 const ftl = require("findthelyrics");
 
-var artist = "Fitz and The Tantrums";
-var title = "I Just Wanna Shine";
+var q = "Fitz and The Tantrums I Just Wanna Shine";
 
-ftl.find(artist, title, function(err, resp) {
+ftl.find(q ,function(err, resp) {
     if (!err) {
         console.log(resp)
     } else {
@@ -38,5 +37,5 @@ ftl.find(artist, title, function(err, resp) {
     // I just wanna climb to the top of a mountain
     // Standing tall when I'm howlin'
     // ...
-})
+});
 ```

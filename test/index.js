@@ -1,9 +1,8 @@
 const ftl = require("../");
 
-var artist = "Fitz and The Tantrums";
-var title = "I Just Wanna Shine";
+var q = "Fitz and The Tantrums I Just Wanna Shine";
 
-ftl.find(artist, title, function(err, resp) {
+ftl.find(q ,function(err, resp) {
     if (!err) {
         console.log(resp)
     } else {

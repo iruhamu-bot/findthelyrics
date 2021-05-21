@@ -1,12 +1,12 @@
 const got = require("got");
 const cheerio = require("cheerio");
 
-exports.find = (artist, title, cb) => {
-    if (!artist | !title | !cb) {
+exports.find = (query_string, cb) => {
+    if (!query_string | !cb) {
         cb({"message": "Callbacks and variables are required.", "code": "notAllVars"});
         return;
     }
-    var q = encodeURI(artist).replace(" ", "+") + "+" + encodeURI(title).replace(" ", "+");
+    var q = encodeURI(query_string).replace(" ", "+");
     var url = "https://genius.com/api/search/song?page=1&q=" + q;
     got(url,{
         headers: {
